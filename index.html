@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bright Smile Dental — Dallas, TX</title>
+<style>
+  :root{
+    --teal:#0d9488; --teal-dark:#0b7c72; --teal-light:#ccfbf1;
+    --ink:#123332; --muted:#5b7a78; --bg:#f4faf9; --card:#ffffff;
+    --accent:#f59e0b;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; color:var(--ink); background:var(--bg); line-height:1.6;}
+  /* ---------- NAV ---------- */
+  nav{position:sticky; top:0; z-index:50; background:rgba(255,255,255,.92); backdrop-filter:blur(8px); border-bottom:1px solid #e2efed;}
+  .nav-inner{max-width:1100px; margin:0 auto; padding:14px 24px; display:flex; align-items:center; justify-content:space-between;}
+  .logo{display:flex; align-items:center; gap:10px; font-weight:800; font-size:1.15rem; color:var(--ink);}
+  .logo .mark{width:36px; height:36px; border-radius:12px; background:linear-gradient(135deg,var(--teal),#14b8a6); display:flex; align-items:center; justify-content:center; font-size:20px;}
+  .nav-links{display:flex; gap:26px; align-items:center;}
+  .nav-links a{text-decoration:none; color:var(--muted); font-weight:600; font-size:.95rem;}
+  .nav-links a:hover{color:var(--teal-dark);}
+  .btn{display:inline-block; background:var(--teal); color:#fff; border:none; padding:12px 24px; border-radius:999px; font-weight:700; font-size:.95rem; cursor:pointer; text-decoration:none; transition:transform .15s, background .15s;}
+  .btn:hover{background:var(--teal-dark); transform:translateY(-1px);}
+  .btn-ghost{background:#fff; color:var(--teal-dark); border:2px solid var(--teal-light);}
+  .btn-ghost:hover{background:var(--teal-light);}
+  /* ---------- HERO ---------- */
+  .hero{max-width:1100px; margin:0 auto; padding:72px 24px 56px; display:grid; grid-template-columns:1.1fr .9fr; gap:48px; align-items:center;}
+  .hero h1{font-size:3rem; line-height:1.15; letter-spacing:-1px; margin-bottom:16px;}
+  .hero h1 span{color:var(--teal);}
+  .hero p{color:var(--muted); font-size:1.1rem; margin-bottom:28px; max-width:480px;}
+  .hero-cta{display:flex; gap:14px; flex-wrap:wrap;}
+  .hero-badges{display:flex; gap:22px; margin-top:34px; flex-wrap:wrap;}
+  .badge{display:flex; align-items:center; gap:8px; font-size:.9rem; font-weight:600; color:var(--muted);}
+  .badge .star{color:var(--accent); font-size:1.1rem;}
+  .hero-art{background:linear-gradient(135deg,#99f6e4,#5eead4 55%,#2dd4bf); border-radius:28px; min-height:340px; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden;}
+  .hero-art::after{content:""; position:absolute; width:420px; height:420px; border-radius:50%; background:rgba(255,255,255,.25); top:-120px; right:-120px;}
+  .hero-art .big{font-size:120px; position:relative; z-index:1; filter:drop-shadow(0 12px 24px rgba(0,0,0,.15));}
+  .hero-art .tag{position:absolute; bottom:22px; left:22px; right:22px; z-index:1; background:#fff; border-radius:16px; padding:14px 18px; font-size:.9rem; box-shadow:0 8px 24px rgba(0,0,0,.12);}
+  .hero-art .tag b{color:var(--teal-dark);}
+  /* ---------- SECTIONS ---------- */
+  .section{max-width:1100px; margin:0 auto; padding:48px 24px;}
+  .section h2{font-size:1.9rem; letter-spacing:-.5px; margin-bottom:8px;}
+  .section .sub{color:var(--muted); margin-bottom:32px;}
+  .grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:20px;}
+  .card{background:var(--card); border-radius:18px; padding:26px; border:1px solid #e2efed; transition:transform .15s, box-shadow .15s;}
+  .card:hover{transform:translateY(-3px); box-shadow:0 12px 28px rgba(13,148,136,.12);}
+  .card .icon{font-size:32px; margin-bottom:12px;}
+  .card h3{font-size:1.1rem; margin-bottom:6px;}
+  .card p{color:var(--muted); font-size:.93rem;}
+  .card .price{margin-top:12px; font-weight:800; color:var(--teal-dark);}
+  .info{display:grid; grid-template-columns:1fr 1fr; gap:20px;}
+  .info .card h3{margin-bottom:12px;}
+  .hours-row{display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px dashed #e2efed; font-size:.95rem;}
+  .hours-row:last-child{border:none;}
+  .hours-row .closed{color:#dc2626; font-weight:700;}
+  footer{background:#0f2e2c; color:#bfe3e0; margin-top:40px;}
+  .footer-inner{max-width:1100px; margin:0 auto; padding:36px 24px; display:flex; justify-content:space-between; gap:24px; flex-wrap:wrap; font-size:.9rem;}
+  footer b{color:#fff;}
+  .demo-note{max-width:1100px; margin:0 auto; padding:0 24px 28px; color:#7fa5a3; font-size:.8rem;}
+  @media(max-width:760px){ .hero{grid-template-columns:1fr; padding-top:48px;} .hero h1{font-size:2.2rem;} .info{grid-template-columns:1fr;} .nav-links a:not(.btn){display:none;} }
+
+  /* ---------- CHAT WIDGET ---------- */
+  #chat-launcher{position:fixed; right:24px; bottom:24px; width:64px; height:64px; border-radius:50%; background:linear-gradient(135deg,var(--teal),var(--teal-dark)); border:none; cursor:pointer; font-size:28px; box-shadow:0 10px 30px rgba(13,148,136,.45); z-index:100; transition:transform .15s; display:flex; align-items:center; justify-content:center;}
+  #chat-launcher:hover{transform:scale(1.07);}
+  #chat-badge{position:absolute; top:-4px; right:-4px; background:#ef4444; color:#fff; font-size:.7rem; font-weight:800; width:22px; height:22px; border-radius:50%; display:flex; align-items:center; justify-content:center;}
+  #chat-widget{position:fixed; right:24px; bottom:100px; width:384px; max-width:calc(100vw - 32px); height:580px; max-height:calc(100vh - 130px); background:#fff; border-radius:22px; box-shadow:0 24px 70px rgba(15,46,44,.28); z-index:100; display:none; flex-direction:column; overflow:hidden; border:1px solid #e2efed;}
+  #chat-widget.open{display:flex; animation:pop .22s ease-out;}
+  @keyframes pop{from{transform:translateY(16px) scale(.97); opacity:0;} to{transform:none; opacity:1;}}
+  .chat-header{background:linear-gradient(135deg,var(--teal),var(--teal-dark)); color:#fff; padding:16px 18px; display:flex; align-items:center; gap:12px;}
+  .chat-avatar{width:42px; height:42px; border-radius:50%; background:#fff; display:flex; align-items:center; justify-content:center; font-size:22px; flex-shrink:0;}
+  .chat-header .t{flex:1;}
+  .chat-header .t b{display:block; font-size:.98rem;}
+  .chat-header .t span{font-size:.78rem; opacity:.92; display:flex; align-items:center; gap:6px;}
+  .dot{width:8px; height:8px; border-radius:50%; background:#4ade80; display:inline-block;}
+  .chat-close{background:rgba(255,255,255,.18); border:none; color:#fff; width:30px; height:30px; border-radius:50%; cursor:pointer; font-size:15px;}
+  .chat-close:hover{background:rgba(255,255,255,.32);}
+  #chat-body{flex:1; overflow-y:auto; padding:18px 14px; background:#f7fbfa; display:flex; flex-direction:column; gap:10px;}
+  .msg{max-width:82%; padding:11px 15px; border-radius:18px; font-size:.92rem; line-height:1.5; animation:fadein .2s ease-out;}
+  @keyframes fadein{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;}}
+  .msg.bot{background:#fff; border:1px solid #e6f0ee; border-bottom-left-radius:6px; align-self:flex-start; color:var(--ink); box-shadow:0 2px 6px rgba(0,0,0,.04);}
+  .msg.user{background:var(--teal); color:#fff; border-bottom-right-radius:6px; align-self:flex-end;}
+  .msg.typing{display:flex; gap:5px; padding:15px 18px;}
+  .msg.typing i{width:8px; height:8px; border-radius:50%; background:#9dbdba; animation:blink 1.1s infinite;}
+  .msg.typing i:nth-child(2){animation-delay:.18s;} .msg.typing i:nth-child(3){animation-delay:.36s;}
+  @keyframes blink{0%,60%,100%{opacity:.25; transform:none;} 30%{opacity:1; transform:translateY(-3px);}}
+  #chips{display:flex; gap:8px; padding:10px 14px 4px; flex-wrap:wrap; background:#f7fbfa;}
+  .chip{border:1.5px solid var(--teal); color:var(--teal-dark); background:#fff; border-radius:999px; padding:7px 14px; font-size:.83rem; font-weight:600; cursor:pointer; transition:background .15s;}
+  .chip:hover{background:var(--teal-light);}
+  .chat-input{display:flex; gap:8px; padding:12px 14px 16px; background:#f7fbfa; border-top:1px solid #e6f0ee;}
+  .chat-input input{flex:1; border:1.5px solid #d7e6e4; border-radius:999px; padding:11px 16px; font-size:.92rem; outline:none; font-family:inherit;}
+  .chat-input input:focus{border-color:var(--teal);}
+  .chat-input button{background:var(--teal); color:#fff; border:none; width:44px; height:44px; border-radius:50%; cursor:pointer; font-size:18px; flex-shrink:0;}
+  .chat-input button:hover{background:var(--teal-dark);}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo"><span class="mark">🦷</span> Bright Smile Dental</div>
+    <div class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#visit">Hours &amp; Location</a>
+      <a href="#visit">(214) 555-0182</a>
+      <a class="btn" href="#" onclick="openChat();return false;">Book Online</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div>
+    <h1>A healthier smile starts <span>here.</span></h1>
+    <p>Modern, gentle dentistry in the heart of Dallas. New patients welcome — same-week appointments, transparent pricing, and a team that actually listens.</p>
+    <div class="hero-cta">
+      <button class="btn" onclick="openChat()">💬 Chat with us now</button>
+      <a class="btn btn-ghost" href="#services">View services</a>
+    </div>
+    <div class="hero-badges">
+      <span class="badge"><span class="star">★★★★★</span> 4.9 · 480+ reviews</span>
+      <span class="badge">✅ Most insurance accepted</span>
+      <span class="badge">🦷 New patient special $79</span>
+    </div>
+  </div>
+  <div class="hero-art">
+    <span class="big">🦷</span>
+    <div class="tag"><b>Try our AI assistant</b> — click the chat bubble to book an appointment, check prices, or ask anything.</div>
+  </div>
+</header>
+
+<section class="section" id="services">
+  <h2>Our services</h2>
+  <p class="sub">Transparent pricing. No surprises.</p>
+  <div class="grid">
+    <div class="card"><div class="icon">✨</div><h3>Cleaning &amp; Polish</h3><p>Full hygiene cleaning, polish, and fluoride treatment.</p><div class="price">from $99 · new patients $79</div></div>
+    <div class="card"><div class="icon">🔍</div><h3>Checkup + X-Rays</h3><p>Complete exam with digital X-rays and a treatment plan.</p><div class="price">$129</div></div>
+    <div class="card"><div class="icon">😁</div><h3>Teeth Whitening</h3><p>Professional in-office whitening, up to 8 shades brighter.</p><div class="price">$299</div></div>
+    <div class="card"><div class="icon">🦷</div><h3>Fillings</h3><p>Tooth-colored composite fillings, done in one visit.</p><div class="price">from $150</div></div>
+    <div class="card"><div class="icon">🛡️</div><h3>Root Canal</h3><p>Painless single-visit root canal therapy.</p><div class="price">from $600</div></div>
+    <div class="card"><div class="icon">📐</div><h3>Braces &amp; Aligners</h3><p>Metal braces and clear aligners for teens and adults.</p><div class="price">Free consultation</div></div>
+  </div>
+</section>
+
+<section class="section" id="visit">
+  <h2>Visit us</h2>
+  <p class="sub">Walk-ins welcome. Free parking on site.</p>
+  <div class="info">
+    <div class="card">
+      <h3>🕘 Opening hours</h3>
+      <div class="hours-row"><span>Monday – Friday</span><b>9:00 AM – 6:00 PM</b></div>
+      <div class="hours-row"><span>Saturday</span><b>9:00 AM – 1:00 PM</b></div>
+      <div class="hours-row"><span>Sunday</span><span class="closed">Closed</span></div>
+    </div>
+    <div class="card">
+      <h3>📍 Find us</h3>
+      <p>4520 McKinney Ave, Suite 200<br>Dallas, TX 75205<br><br>📞 (214) 555-0182<br>✉️ hello@brightsmiledental.example</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div><b>Bright Smile Dental</b><br>4520 McKinney Ave, Suite 200, Dallas, TX 75205</div>
+    <div>📞 (214) 555-0182<br>✉️ hello@brightsmiledental.example</div>
+    <div>Mon–Fri 9–6 · Sat 9–1<br>© 2026 Bright Smile Dental</div>
+  </div>
+</footer>
+<p class="demo-note">Demo portfolio piece — "Bright Smile Dental" is a fictional clinic created to showcase an AI chat assistant for small businesses.</p>
+
+<!-- ================= CHAT WIDGET ================= -->
+<button id="chat-launcher" onclick="toggleChat()" aria-label="Open chat">💬<span id="chat-badge">1</span></button>
+
+<div id="chat-widget" role="dialog" aria-label="Bright Smile Dental chat">
+  <div class="chat-header">
+    <div class="chat-avatar">🦷</div>
+    <div class="t"><b>Smiley — AI Assistant</b><span><span class="dot"></span> Online · replies instantly</span></div>
+    <button class="chat-close" onclick="toggleChat()">✕</button>
+  </div>
+  <div id="chat-body"></div>
+  <div id="chips"></div>
+  <div class="chat-input">
+    <input id="chat-text" type="text" placeholder="Type your message…" autocomplete="off" onkeydown="if(event.key==='Enter')sendUser()">
+    <button onclick="sendUser()" aria-label="Send">➤</button>
+  </div>
+</div>
+
+<script>
+/* ============ Smiley — rule-based demo AI engine ============ */
+const body = document.getElementById('chat-body');
+const chipsEl = document.getElementById('chips');
+const inputEl = document.getElementById('chat-text');
+const launcher = document.getElementById('chat-launcher');
+const badge = document.getElementById('chat-badge');
+const widget = document.getElementById('chat-widget');
+
+let greeted = false;
+let convo = { mode:'idle', step:0, data:{} }; // mode: idle | booking | lead
+
+function openChat(){ widget.classList.add('open'); badge.style.display='none'; if(!greeted){ greeted=true; greet(); } inputEl.focus(); }
+function toggleChat(){ widget.classList.contains('open') ? widget.classList.remove('open') : openChat(); }
+
+function esc(s){ const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+
+function addMsg(text, who){
+  const m=document.createElement('div');
+  m.className='msg '+who; m.innerHTML=text;
+  body.appendChild(m); body.scrollTop=body.scrollHeight;
+}
+function addUserMsg(text){
+  const m=document.createElement('div');
+  m.className='msg user'; m.textContent=text;
+  body.appendChild(m); body.scrollTop=body.scrollHeight;
+}
+function showTyping(cb){
+  const t=document.createElement('div');
+  t.className='msg bot typing'; t.id='typing-bubble';
+  t.innerHTML='<i></i><i></i><i></i>';
+  body.appendChild(t); body.scrollTop=body.scrollHeight;
+  setTimeout(()=>{ const b=document.getElementById('typing-bubble'); if(b) b.remove(); cb(); }, 650+Math.random()*500);
+}
+function botSay(html, chips){
+  showTyping(()=>{ addMsg(html,'bot'); renderChips(chips||[]); });
+}
+function renderChips(chips){
+  chipsEl.innerHTML='';
+  chips.forEach(c=>{
+    const b=document.createElement('button');
+    b.className='chip'; b.textContent=c.label;
+    b.onclick=()=>{ addUserMsg(c.label); clearChips(); handleInput(c.value||c.label, true); };
+    chipsEl.appendChild(b);
+  });
+}
+function clearChips(){ chipsEl.innerHTML=''; }
+
+const HOME_CHIPS=[
+  {label:'📅 Book appointment', value:'book appointment'},
+  {label:'🕘 Opening hours', value:'opening hours'},
+  {label:'💲 Prices', value:'prices'},
+  {label:'📍 Location', value:'location'}
+];
+
+function greet(){
+  botSay("Hi there! 👋 I'm <b>Smiley</b>, the AI assistant for Bright Smile Dental in Dallas. I can help you book an appointment, check our prices and hours, or answer questions about our services. What can I do for you?", HOME_CHIPS);
+}
+
+/* ---------- intent detection ---------- */
+function intent(t){
+  const s=t.toLowerCase();
+  if(/(^|\s)(hi|hii+|hello|hey|yo|good\s?(morning|afternoon|evening))\b/.test(s)) return 'greeting';
+  if(/emergency|urgent|toothache|severe pain|broken tooth|bleeding|swollen/.test(s)) return 'emergency';
+  if(/hour|open|close|timing|when.*(open|close)|sunday|saturday|weekend/.test(s)) return 'hours';
+  if(/price|cost|how much|fee|charge|expensive|whitening.*cost|cleaning.*cost/.test(s)) return 'price';
+  if(/book|appointment|schedule|reserve|visit|see (a|the) dentist|slot/.test(s)) return 'book';
+  if(/cancel|reschedule|change.*appointment/.test(s)) return 'cancelAppt';
+  if(/where|address|location|direction|park|find you|map/.test(s)) return 'location';
+  if(/insurance|insurer|cover|ppo|delta/.test(s)) return 'insurance';
+  if(/service|offer|treatment|cleaning|whiten|filling|braces|aligner|root canal|extraction|implant|crown|denture|checkup|x-?ray/.test(s)) return 'services';
+  if(/new patient|first (visit|time)/.test(s)) return 'newpatient';
+  if(/thank|thanks|thx|great|awesome|perfect/.test(s)) return 'thanks';
+  if(/bye|goodbye|see you/.test(s)) return 'bye';
+  if(/human|person|real|staff|reception|front desk|call me|phone/.test(s)) return 'human';
+  return 'fallback';
+}
+
+/* ---------- booking flow ---------- */
+const BOOK_SERVICES=['Cleaning & Polish','Checkup + X-Rays','Teeth Whitening','Filling','Braces consult','Something else'];
+
+function startBooking(){
+  convo={mode:'booking', step:1, data:{}};
+  botSay("Great, let's get you booked in! 🗓️<br>Which service do you need?",
+    BOOK_SERVICES.map(s=>({label:s, value:'SERVICE:'+s})).concat([{label:'Cancel', value:'CANCEL'}]));
+}
+function bookingStep(raw){
+  const t=raw.trim();
+  if(/^cancel$/i.test(t)||t==='CANCEL'){ convo={mode:'idle',step:0,data:{}}; botSay("No problem — booking cancelled. Anything else I can help with?", HOME_CHIPS); return; }
+  const d=convo.data;
+  if(convo.step===1){
+    const svc = t.startsWith('SERVICE:') ? t.slice(8) : t;
+    d.service=svc; convo.step=2;
+    botSay(`<b>${esc(svc)}</b> — good choice! 😊<br>What's your full name?`);
+  } else if(convo.step===2){
+    if(t.length<2){ botSay("Could you share your full name so we can hold the appointment for you?"); return; }
+    d.name=t; convo.step=3;
+    botSay(`Thanks, ${esc(t.split(' ')[0])}! What's the best <b>phone number</b> to reach you at? (10 digits)`);
+  } else if(convo.step===3){
+    const digits=t.replace(/\D/g,'');
+    if(digits.length<10){ botSay("Hmm, that doesn't look like a complete phone number. Could you enter your <b>10-digit</b> phone number?"); return; }
+    d.phone='('+digits.slice(0,3)+') '+digits.slice(3,6)+'-'+digits.slice(6,10);
+    convo.step=4;
+    botSay("Perfect. When would you prefer to come in?",
+      [{label:'Weekday morning',value:'PREF:Weekday morning'},{label:'Weekday afternoon',value:'PREF:Weekday afternoon'},{label:'Saturday',value:'PREF:Saturday'},{label:'Cancel',value:'CANCEL'}]);
+  } else if(convo.step===4){
+    d.pref = t.startsWith('PREF:') ? t.slice(5) : t;
+    convo.step=5;
+    const ref='BSD-'+Math.floor(1000+Math.random()*9000);
+    d.ref=ref;
+    botSay(`Here's your booking summary 📋<br><br>🦷 <b>Service:</b> ${esc(d.service)}<br>👤 <b>Name:</b> ${esc(d.name)}<br>📞 <b>Phone:</b> ${esc(d.phone)}<br>🗓️ <b>Preferred:</b> ${esc(d.pref)}<br><br>Our front desk will call you within <b>2 business hours</b> to confirm your exact time. Shall I submit this request?`,
+      [{label:'✅ Confirm booking',value:'CONFIRM'},{label:'Start over',value:'RESTART'},{label:'Cancel',value:'CANCEL'}]);
+  } else if(convo.step===5){
+    if(t==='CONFIRM'){
+      convo={mode:'idle',step:0,data:{}};
+      botSay(`🎉 You're booked in, ${esc(d.name.split(' ')[0])}!<br><br>Your request reference is <b>${d.ref}</b>. We'll call <b>${esc(d.phone)}</b> shortly to confirm your exact appointment time for <b>${esc(d.pref)}</b>.<br><br>Anything else I can help with?`, HOME_CHIPS);
+    } else if(t==='RESTART'){ startBooking(); }
+    else { convo={mode:'idle',step:0,data:{}}; botSay("No problem — booking cancelled. Anything else I can help with?", HOME_CHIPS); }
+  }
+}
+
+/* ---------- lead capture flow (fallback / human request) ---------- */
+function startLead(reason){
+  convo={mode:'lead', step:1, data:{reason:reason||''}};
+  botSay("Of course! I'll have our front desk reach out to you personally. 🤝<br>What's your <b>name</b>?", [{label:'Never mind',value:'CANCEL'}]);
+}
+function leadStep(raw){
+  const t=raw.trim();
+  if(/^cancel$/i.test(t)||t==='CANCEL'){ convo={mode:'idle',step:0,data:{}}; botSay("No worries! I'm still here if you need anything.", HOME_CHIPS); return; }
+  const d=convo.data;
+  if(convo.step===1){
+    if(t.length<2){ botSay("Could you share your name so our team knows who to ask for?"); return; }
+    d.name=t; convo.step=2;
+    botSay(`Thanks, ${esc(t.split(' ')[0])}. And your <b>phone number</b>?`);
+  } else if(convo.step===2){
+    const digits=t.replace(/\D/g,'');
+    if(digits.length<10){ botSay("That number looks incomplete — could you enter your <b>10-digit</b> phone number?"); return; }
+    d.phone='('+digits.slice(0,3)+') '+digits.slice(3,6)+'-'+digits.slice(6,10);
+    convo={mode:'idle',step:0,data:{}};
+    botSay(`All set, ${esc(d.name.split(' ')[0])}! ✅ Our front desk will call <b>${esc(d.phone)}</b> within 2 business hours. Anything else I can help with meanwhile?`, HOME_CHIPS);
+  }
+}
+
+/* ---------- main router ---------- */
+function handleInput(raw, fromChip){
+  const text=raw.trim();
+  if(!text) return;
+  if(convo.mode==='booking'){ bookingStep(text); return; }
+  if(convo.mode==='lead'){ leadStep(text); return; }
+
+  switch(intent(text)){
+    case 'greeting':
+      botSay("Hello! 👋 Great to see you. Are you looking to book an appointment or do you have a question about our services?", HOME_CHIPS); break;
+    case 'emergency':
+      botSay("I'm sorry you're dealing with that — dental pain can't wait. 😟<br><br>We reserve <b>same-day emergency slots</b> every morning. Please call us right away at <b>(214) 555-0182</b>, or I can start a booking request for you now.",
+        [{label:'📅 Book emergency visit',value:'book appointment'},{label:'📞 (214) 555-0182',value:'human'}]); break;
+    case 'hours':
+      botSay("🕘 <b>Our hours:</b><br>Mon–Fri: 9:00 AM – 6:00 PM<br>Saturday: 9:00 AM – 1:00 PM<br>Sunday: Closed<br><br>Want me to book you a slot?", [{label:'📅 Book appointment',value:'book appointment'}]); break;
+    case 'price':
+      botSay("💲 <b>Our prices:</b><br>• Cleaning & Polish — $99 <b>(new patients $79!)</b><br>• Checkup + X-Rays — $129<br>• Whitening — $299<br>• Fillings — from $150<br>• Root canal — from $600<br>• Braces consult — <b>free</b><br><br>We accept most insurance plans too.",
+        [{label:'📅 Book appointment',value:'book appointment'},{label:'Insurance accepted?',value:'insurance'}]); break;
+    case 'services':
+      botSay("🦷 <b>We offer:</b> cleanings, checkups & X-rays, whitening, tooth-colored fillings, root canals, crowns, implants, braces & clear aligners, and emergency care.<br><br>Anything specific you're interested in?",
+        [{label:'💲 Prices',value:'prices'},{label:'📅 Book appointment',value:'book appointment'}]); break;
+    case 'newpatient':
+      botSay("Welcome! 🎉 New patients get a <b>cleaning for just $79</b> (normally $99). Your first visit includes a full exam, X-rays, and a personalized treatment plan — about 60 minutes.<br><br>Ready to book your first visit?",
+        [{label:'📅 Book appointment',value:'book appointment'}]); break;
+    case 'book': startBooking(); break;
+    case 'cancelAppt':
+      botSay("To cancel or reschedule an existing appointment, please call our front desk at <b>(214) 555-0182</b> — they'll sort it out in a minute. Or I can have them call you back.",
+        [{label:'Have them call me',value:'human'}]); break;
+    case 'location':
+      botSay("📍 You'll find us at:<br><b>4520 McKinney Ave, Suite 200<br>Dallas, TX 75205</b><br><br>Free parking on site, and we're on the DART bus line. Look for the blue awning!", HOME_CHIPS); break;
+    case 'insurance':
+      botSay("✅ We accept <b>most major PPO plans</b> including Delta Dental, Cigna, Aetna, and MetLife. Bring your insurance card to your visit and we'll verify your coverage on the spot — no surprises.<br><br>Want to book a visit?",
+        [{label:'📅 Book appointment',value:'book appointment'}]); break;
+    case 'thanks':
+      botSay("You're so welcome! 😊 Anything else I can help with?", HOME_CHIPS); break;
+    case 'bye':
+      botSay("Take care and keep smiling! 🦷✨ We're here whenever you need us.", []); break;
+    case 'human': startLead('callback'); break;
+    default:
+      botSay("Hmm, I'm not sure I have the answer to that one. 🤔<br><br>I can have a member of our front desk <b>call you back</b> within 2 business hours — or try asking about our <b>hours</b>, <b>prices</b>, <b>services</b>, or <b>booking</b>.",
+        [{label:'Have them call me',value:'human'},{label:'📅 Book appointment',value:'book appointment'},{label:'💲 Prices',value:'prices'}]);
+  }
+}
+
+function sendUser(){
+  const v=inputEl.value.trim();
+  if(!v) return;
+  inputEl.value='';
+  addUserMsg(v); clearChips();
+  handleInput(v,false);
+}
+</script>
+</body>
+</html>
